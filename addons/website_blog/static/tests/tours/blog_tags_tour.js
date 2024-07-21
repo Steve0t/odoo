@@ -2,7 +2,9 @@
 
 import wTourUtils from '@website/js/tours/tour_utils';
 
-
+/**
+ * some other comments because why not ?
+ */
 /**
  * Makes sure that blog tags can be created and removed.
  */
