@@ -7,6 +7,7 @@ from stdnum.fr import siret
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from odoo.addons.account_edi_ubl_cii.models.account_edi_common import EAS_MAPPING
+from odoo.addons.account.models.company import PEPPOL_DEFAULT_COUNTRIES
 
 
 class ResPartner(models.Model):
@@ -119,7 +120,7 @@ class ResPartner(models.Model):
             ('9949', "9949 - Slovenia VAT number"),
             ('9950', "9950 - Slovakia VAT number"),
             ('9951', "9951 - San Marino VAT number"),
-            ('9952', "9952 - Turkey VAT number"),
+            ('9952', "9952 - Türkiye VAT number"),
             ('9953', "9953 - Holy See (Vatican City State) VAT number"),
             ('9955', "9955 - Swedish VAT number"),
             ('9957', "9957 - French VAT number"),
@@ -130,8 +131,8 @@ class ResPartner(models.Model):
     @api.constrains('peppol_eas')
     def _check_peppol_eas(self):
         for partner in self:
-            if partner.peppol_eas in ('0212', '0213'):
-                raise ValidationError(_("Peppol EAS codes 0212 and 0213 are deprecated. Please use 0216 instead."))
+            if partner.peppol_eas in ('0037', '0212', '0213', '0215'):
+                raise ValidationError(_("Peppol EAS codes 0037, 0212, 0213, 0215 are deprecated. Please use 0216 instead."))
             elif partner.peppol_eas == '9955':
                 raise ValidationError(_("Peppol EAS code 9955 is deprecated. Please use 0007 instead."))
             elif partner.peppol_eas == '9901':
@@ -168,7 +169,7 @@ class ResPartner(models.Model):
             country_code = partner._deduce_country_code()
             if country_code in format_mapping:
                 partner.ubl_cii_format = format_mapping[country_code]
-            elif country_code in EAS_MAPPING:
+            elif country_code in PEPPOL_DEFAULT_COUNTRIES and country_code in EAS_MAPPING:
                 partner.ubl_cii_format = 'ubl_bis3'
             else:
                 partner.ubl_cii_format = partner.ubl_cii_format

@@ -1850,7 +1850,7 @@ describe('Utils', () => {
                 contentBefore: unformat(`
                     <div class="o_editor_banner o_not_editable lh-1 d-flex align-items-center alert alert-info pb-0 pt-3" role="status" data-oe-protected="true" contenteditable="false">
                         <i class="fs-4 fa fa-info-circle mb-3" aria-label="Banner Info"></i>
-                        <div class="w-100 ms-3" data-oe-protected="false" contenteditable="true">
+                        <div class="w-100 px-3" data-oe-protected="false" contenteditable="true">
                             <p>abc</p>
                             <p>def</p>
                         </div>
@@ -1870,13 +1870,20 @@ describe('Utils', () => {
                 contentAfter: unformat(`
                     <div class="o_editor_banner o_not_editable lh-1 d-flex align-items-center alert alert-info pb-0 pt-3" role="status" data-oe-protected="true" contenteditable="false">
                         <i class="fs-4 fa fa-info-circle mb-3" aria-label="Banner Info"></i>
-                        <div class="w-100 ms-3" data-oe-protected="false" contenteditable="true">
+                        <div class="w-100 px-3" data-oe-protected="false" contenteditable="true">
                             <p>abc</p>
                             <p>def</p>
                         </div>
                     </div>
                 `),
             });
+        });
+        it('should not traceback when detached node', async () => {
+            const detached = document.createTextNode('');
+            let [node, offset] = getDeepestPosition(detached, 0);
+            window.chai
+                .expect([node, offset])
+                .to.eql([detached, 0]);
         });
     });
     // TODO:

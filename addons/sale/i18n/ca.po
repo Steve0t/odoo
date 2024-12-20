@@ -21,25 +21,26 @@
 # Jonatan Gk, 2023
 # Martin Trigaux, 2023
 # marcescu, 2023
-# Quim - eccit <quim@eccit.com>, 2023
 # Manel Fernandez Ramirez <manelfera@outlook.com>, 2023
 # Carles Antoli <carlesantoli@hotmail.com>, 2023
 # Harcogourmet, 2024
-# Estudi TIC, 2024
+# EstudiTIC, 2024
 # Arnau Ros, 2024
 # Josep Anton Belchi, 2024
 # Iván Infantes Castarnado, 2024
 # Ivan Espinola, 2024
 # Óscar Fonseca <tecnico@pyming.com>, 2024
 # Santiago Payà <santiagopim@gmail.com>, 2024
+# Noemi Pla, 2024
+# Quim - coopdevs <quim.rebull@coopdevs.org>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 10:45+0000\n"
+"POT-Creation-Date: 2024-08-13 10:28+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Santiago Payà <santiagopim@gmail.com>, 2024\n"
+"Last-Translator: Quim - coopdevs <quim.rebull@coopdevs.org>, 2024\n"
 "Language-Team: Catalan (https://app.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -643,6 +644,24 @@ msgid ""
 "</div>\n"
 "            "
 msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        <t t-set=\"doc_name\" t-value=\"object.type_name\"></t>\n"
+"        Estimat <t t-out=\"object.partner_id.name or ''\">usuari</t>,\n"
+"        <br><br>\n"
+"        T'informem que el teu\n"
+"        <t t-out=\"doc_name or ''\">pressupost</t> <strong t-out=\"object.name or ''\">S00052</strong>\n"
+"        <t t-if=\"object.origin\">\n"
+"            (amb referència: <t t-out=\"object.origin or ''\">S00052</t> )\n"
+"        </t>\n"
+"        ha estat cancel·lat. PEr tant no serà cobret per aquesta comanda.\n"
+"        Si cal algun reemborsament serà acordat amb vosté.\n"
+"        <br><br>\n"
+"        Contacti amb nosaltres per qualsevol dubte.\n"
+"        <br>\n"
+"    </p>\n"
+"</div>\n"
+"            "
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.sale_order_portal_template
@@ -843,7 +862,7 @@ msgstr ""
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "<strong>Salesperson:</strong><br/>"
-msgstr ""
+msgstr "<strong>Agent comercial:</strong><br/>"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
@@ -883,7 +902,7 @@ msgstr "<strong>Pressupost cancel·lat.</strong>"
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "<strong>Your Reference:</strong><br/>"
-msgstr ""
+msgstr "<strong>La vostra referència:</strong><br/>"
 
 #. module: sale
 #: model:ir.model.constraint,message:sale.constraint_sale_order_date_order_conditional_required
@@ -4016,13 +4035,13 @@ msgid "Sales Analysis"
 msgstr "Anàlisi de vendes"
 
 #. module: sale
-#: model:ir.actions.act_window,name:sale.action_order_report_customers
-msgid "Sales Analysis By Customers"
+#: model:ir.actions.act_window,name:sale.action_order_report_salesperson
+msgid "Sales Analysis By Salespersons"
 msgstr ""
 
 #. module: sale
-#: model:ir.actions.act_window,name:sale.action_order_report_salesperson
-msgid "Sales Analysis By Salespersons"
+#: model:ir.actions.act_window,name:sale.action_order_report_customers
+msgid "Sales Analysis Per Customers"
 msgstr ""
 
 #. module: sale
@@ -4828,7 +4847,6 @@ msgstr ""
 
 #. module: sale
 #. odoo-python
-#. odoo-python
 #: code:addons/sale/models/product_template.py:0
 #, python-format
 msgid "The product (%s) has incompatible values: %s"
@@ -4873,11 +4891,6 @@ msgstr "Els paràmetres proporcionats no són vàlids"
 #, python-format
 msgid "The value of the down payment amount must be positive."
 msgstr "El valor de la bestreta ha de ser positiu."
-
-#. module: sale
-#: model_terms:ir.ui.view,arch_db:sale.portal_my_orders
-msgid "There are currently no orders for your account."
-msgstr "No hi ha comandes en el teu compte"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.portal_my_quotations
@@ -5326,6 +5339,7 @@ msgstr "Avís"
 
 #. module: sale
 #. odoo-python
+#: code:addons/sale/models/product_template.py:0
 #: code:addons/sale/models/sale_order.py:0
 #: code:addons/sale/models/sale_order_line.py:0
 #, python-format
